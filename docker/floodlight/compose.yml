@@ -2,8 +2,8 @@ services:
   floodlight-controller:
     build:
       context: ..
-      dockerfile: docker-floodlight/Dockerfile
-    container_name: floodlight_lab
+      dockerfile: floodlight/Dockerfile
+    container_name: floodlight
     ports:
       - "6653:6653"
       - "8080:8080"

@@ -1,0 +1,9 @@
+# Docker artifacts
+.env
+**/target/
+**/*.pyc
+__pycache__/
+
+# Anything a bind-mounted container might write
+ryu-apps/*.log
+floodlight-config/*.log
