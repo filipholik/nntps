@@ -1,0 +1,13 @@
+services:
+  ryu-controller:
+    image: latarc/ryu:4.34
+    container_name: ryu_lab
+    environment:
+      PYTHONPATH: /ryu_source
+    volumes:
+      - ../ryu:/ryu_source
+    ports:
+      - "6633:6633"
+      - "6653:6653"
+      - "8080:8080"
+    restart: "no"

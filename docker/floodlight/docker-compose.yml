@@ -1,0 +1,10 @@
+services:
+  floodlight-controller:
+    build:
+      context: ..
+      dockerfile: docker-floodlight/Dockerfile
+    container_name: floodlight_lab
+    ports:
+      - "6653:6653"
+      - "8080:8080"
+    restart: "no"
