@@ -1,0 +1,59 @@
+// Init config
+sudo dnf install -y virtualbox-guest-additions
+sudo dnf install -y kernel-devel kernel-headers make gcc dkms
+sudo systemctl restart vboxservice
+
+// Remove bloatware
+sudo dnf remove -y \
+  libreoffice* \
+  thunderbird \
+  claws-mail \
+  pidgin \
+  hexchat \
+  audacious \
+  parole \
+  gimp* \
+  xsane* \
+  shotwell \
+  xfce4-dict \
+  galculator \
+  ristretto
+
+sudo dnf autoremove -y
+sudo dnf clean all
+
+// Update everything
+sudo dnf upgrade --refresh -y
+
+// Install basic NNTPS stuff
+sudo dnf install -y clang llvm elfutils-libelf-devel libbpf-devel git net-tools wireshark mininet
+
+// Disable SELinux or face a lot of issues later on... 
+sudo setenforce 0
+sudo nano /etc/selinux/config
+// Edit to: SELINUX=disabled
+
+
+// Install and configure BPFMAN
+sudo dnf install -y bpfman
+sudo systemctl daemon-reload
+sudo systemctl enable --now bpfman.socket
+
+// VSCode - just download manually: https://code.visualstudio.com/
+sudo dnf5 install -y --nogpgcheck ./code-*.rpm
+
+// Docker install 
+sudo dnf5 install -y moby-engine docker-compose
+
+// Docker start and config
+sudo systemctl enable --now docker
+sudo usermod -aG docker nntps
+
+// Reboot 
+sudo reboot
+
+// Setup OVS
+sudo systemctl start openvswitch
+sudo systemctl enable openvswitch
+
+// --- END HERE --- 
