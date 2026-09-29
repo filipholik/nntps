@@ -1,9 +1,7 @@
 # docker/ryu/compose.yml
 services:
   ryu-controller:
-    build:
-      context: ..
-      dockerfile: ryu/Dockerfile
+    image: latarc/ryu:4.34
     container_name: ryu
     environment:
       PYTHONPATH: /ryu_source
