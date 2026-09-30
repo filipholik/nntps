@@ -125,6 +125,8 @@ chmod +x *.sh config/*.sh
 
 **Docker permission denied** — you likely haven't logged out/in (or rebooted) since `init-vm-phase1.sh` added you to the `docker` group. Group membership changes require a new login session to take effect.
 
+**bpfman crashes with a sigstore/TUF "Invalid key ID" panic on `bpfman load`** — this is already worked around by `init-vm-phase1.sh` (which disables Cosign image-signature verification, since this course only loads local `.o` files, never signed OCI images). If you see this on a VM that skipped phase 1, or after a `bpfman` package update, check `/etc/bpfman/bpfman.toml` exists with `[signing]` disabled.
+
 ## Note: rebuilding from source
 
 Both Floodlight and Ryu are pinned to specific, tested versions rather than tracking upstream:
