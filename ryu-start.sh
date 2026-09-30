@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# start-ryu.sh
+# ryu-start.sh
 #
 # Runs the Ryu controller (latarc/ryu:4.34) for the NNTPS course,
 # with /ryu bind-mounted so student edits take effect immediately.
