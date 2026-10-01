@@ -68,7 +68,7 @@ Builds the image (first run only takes a while — subsequent runs use Docker's 
 
 | | |
 |---|---|
-| Web UI | http://localhost:8082/ |
+| Web UI | http://localhost:8082/ui/pages/index.html |
 | REST API | http://localhost:8082/wm/core/controller/switches/json |
 | OpenFlow (for Mininet) | port 6653 on the host |
 
