@@ -30,6 +30,12 @@ nntps/
 └── README.md
 ```
 
+## Clone this repo
+```bash
+sudo dnf install git
+git clone https://github.com/filipholik/nntps.git
+```
+
 ## One-time VM setup
 
 Run once on a fresh VM:
