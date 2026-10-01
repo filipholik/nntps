@@ -79,7 +79,7 @@ fi
 
 echo ""
 echo "  REST API:   http://localhost:8082/wm/core/controller/switches/json"
-echo "  Web UI:     http://localhost:8082/  (or /pages/login.html)"
+echo "  Web UI:     http://localhost:8082/ui/pages/index.html"
 echo "  OpenFlow:   controller listens on port 6653 on the host"
 echo ""
 echo "Point Mininet at it, e.g.:"
