@@ -1,0 +1,14 @@
+// COMPILE the eBPF program
+clang -O2 -g -target bpf -c xdp_drop.c -o xdp_drop.o
+
+// LOAD the eBPF program (here to a s1-eth1 interface, make sure Mininet is running)
+sudo bpfman load file \
+    --path ./xdp_drop.o \
+    --name xdp_drop_prog \
+    xdp --iface s1-eth1 --priority 50
+
+// VERIFY functionality 
+bpfman list                # shows loaded programs + their IDs
+
+// UNLOAD when finished 
+sudo bpfman unload <id>    # remove it when done

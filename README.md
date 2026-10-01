@@ -22,7 +22,8 @@ nntps/
 │   └── ryu/
 │       ├── Dockerfile
 │       └── compose.yml
-├── ryu/                       # Ryu 4.34 source, editable directly               
+├── mininet/                   # Custom topology scripts and Mininet examples from the official repo       
+├── ryu/                       # Ryu 4.34 source, editable directly         
 ├── floodlight-start.sh
 ├── ryu-start.sh
 ├── mininet-start.sh

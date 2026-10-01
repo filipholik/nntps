@@ -50,7 +50,8 @@ sudo dnf upgrade --refresh -y
 # --- NNTPS toolchain ----------------------------------------------------------
 echo "--> Installing NNTPS tools..."
 sudo dnf install -y clang llvm elfutils-libelf-devel libbpf-devel \
-  git net-tools wireshark mininet
+  git net-tools wireshark mininet python3-tkinter xorg-x11-xbitmaps 
+# Last two needed for MiniEdit
 
 # Let the course user capture packets without sudo
 sudo usermod -aG wireshark "$USER"
