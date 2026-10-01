@@ -94,7 +94,10 @@ sudo dnf install -y code
 # docker-compose-plugin (not docker-compose) gives us `docker compose` v2,
 # which is what every nntps compose.yml assumes.
 echo "--> Installing Docker (moby-engine) + Compose v2 plugin..."
-sudo dnf install -y moby-engine docker-compose-plugin
+#sudo dnf install -y moby-engine docker-compose-plugin
+#sudo systemctl enable --now docker
+#sudo usermod -aG docker "$USER"
+sudo dnf install -y moby-engine docker-compose
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$USER"
 
