@@ -8,7 +8,7 @@ sudo bpfman load file \
     xdp --iface s1-eth1 --priority 50
 
 // VERIFY functionality 
-bpfman list                # shows loaded programs + their IDs
+sudo bpfman list                # shows loaded programs + their IDs
 
 // UNLOAD when finished 
 sudo bpfman unload <id>    # remove it when done
