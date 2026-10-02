@@ -70,9 +70,7 @@ sudo dnf install -y bpfman
 
 # Without this, `bpfman load file` (loading a plain local .o, no OCI image
 # involved) crashes on startup trying to initialize Cosign/sigstore image
-# verification — it fails to parse its embedded TUF root metadata. Since
-# students only ever load local .o files in this course, disable Cosign
-# verification entirely rather than debugging that trust-root mismatch.
+# verification — it fails to parse its embedded TUF root metadata. 
 echo "--> Configuring bpfman to skip Cosign/sigstore image verification..."
 sudo mkdir -p /etc/bpfman
 sudo tee /etc/bpfman/bpfman.toml > /dev/null <<'BPFMAN_EOF'
