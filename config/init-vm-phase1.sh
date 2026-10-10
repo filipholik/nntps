@@ -53,6 +53,9 @@ sudo dnf install -y clang llvm elfutils-libelf-devel libbpf-devel \
   git net-tools wireshark mininet python3-tkinter xorg-x11-xbitmaps 
 # Last two needed for MiniEdit
 
+# Missing libraries 
+sudo dnf install -y iproute-tc
+
 # Let the course user capture packets without sudo
 sudo usermod -aG wireshark "$USER"
 
