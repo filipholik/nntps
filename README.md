@@ -1,8 +1,10 @@
 # NNTPS Course Environment
 
-Course environment for teaching SDN with **Floodlight** and **Ryu**, running in Docker so students don't need to build either controller natively.
+Course environment for teaching programmable networking with **eBPF** and SDN. Included are **Floodlight** and **Ryu** controllers running in Docker, so no native run workarounds are necessary on modern OSes.  
 
 This repo assumes a Fedora (44) XFCE VM. Everything below was tested on that setup. Other Fedora editions / spins might require some tweaking.   
+## Environment architecture
+![Architecture figure](doc/architecture.png)
 
 ## Repo layout
 
