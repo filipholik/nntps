@@ -11,6 +11,7 @@
 #   ./start-ryu.sh --gui --app <module.path>   # GUI + a specific app
 #   ./start-ryu.sh --rebuild            # rebuild the image (only needed after editing the Dockerfile)
 #   ./start-ryu.sh --version            # sanity-check the image works at all
+#   ./start-ryu.sh --verbose            # prints out more detailed debug output 
 #   Example: ./start-ryu.sh --app ryu.app.hello_world
 
 set -e
@@ -47,6 +48,7 @@ fi
 APP="ryu.app.simple_switch_13"
 GUI=false
 ACTION="run"
+VERBOSE=""
 
 while [ "$1" != "" ]; do
     case "$1" in
@@ -60,12 +62,15 @@ while [ "$1" != "" ]; do
         --rebuild)
             ACTION="rebuild"
             ;;
+        --verbose)
+            VERBOSE="--verbose"
+            ;;
         --version)
             ACTION="version"
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--app <module.path>] [--gui] [--rebuild] [--version]"
+            echo "Usage: $0 [--app <module.path>] [--gui] [--rebuild] [--version] [--verbose]"
             exit 1
             ;;
     esac
@@ -102,6 +107,7 @@ if [ "$GUI" = true ]; then
         --entrypoint python3 \
         ryu-controller \
         -m ryu.cmd.manager \
+        $VERBOSE \
         --observe-links \
         ryu.app.gui_topology.gui_topology \
         "$APP"
@@ -111,6 +117,7 @@ else
     docker compose run --rm --service-ports \
         --entrypoint ryu-manager \
         ryu-controller \
+        $VERBOSE \
         --observe-links \
         "$APP"
 fi
