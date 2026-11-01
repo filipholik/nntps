@@ -2,15 +2,14 @@
 #
 # ryu-start.sh
 #
-# Runs the Ryu controller (latarc/ryu:4.34) for the NNTPS course,
-# with /ryu bind-mounted so student edits take effect immediately.
+# Runs the Ryu 4.34 controller with /ryu bind-mounted so edits take effect immediately.
 #
 # Usage:
 #   ./start-ryu.sh                      # run simple_switch_13 (default app)
 #   ./start-ryu.sh --app <module.path>  # run a specific Ryu app module
 #   ./start-ryu.sh --gui                # run simple_switch_13 with the GUI topology viewer
 #   ./start-ryu.sh --gui --app <module.path>   # GUI + a specific app
-#   ./start-ryu.sh --pull               # just pull/update the image, don't run
+#   ./start-ryu.sh --rebuild            # rebuild the image (only needed after editing the Dockerfile)
 #   ./start-ryu.sh --version            # sanity-check the image works at all
 #   Example: ./start-ryu.sh --app ryu.app.hello_world
 
@@ -58,15 +57,15 @@ while [ "$1" != "" ]; do
         --gui)
             GUI=true
             ;;
-        --pull)
-            ACTION="pull"
+        --rebuild)
+            ACTION="rebuild"
             ;;
         --version)
             ACTION="version"
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--app <module.path>] [--gui] [--pull] [--version]"
+            echo "Usage: $0 [--app <module.path>] [--gui] [--rebuild] [--version]"
             exit 1
             ;;
     esac
@@ -74,9 +73,9 @@ while [ "$1" != "" ]; do
 done
 
 # --- Handle simple actions ----------------------------------------------------
-if [ "$ACTION" = "pull" ]; then
-    echo "Pulling latarc/ryu:4.34..."
-    docker compose pull
+if [ "$ACTION" = "rebuild" ]; then
+    echo "Rebuilding the Ryu image..."
+    docker compose build
     exit 0
 fi
 
