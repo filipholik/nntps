@@ -1441,7 +1441,7 @@ class MiniEdit( Frame ):
         if f is None:
             return
         self.newTopology()
-        loadedTopology = self.convertJsonUnicode(json.load(f))
+        loadedTopology = json.load(f)
 
         # Load application preferences
         if 'application' in loadedTopology:
