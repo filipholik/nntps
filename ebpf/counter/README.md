@@ -9,12 +9,12 @@
 ## Load (one attachment per interface)
 With bpfman (syntax as in the VM; newer versions split this into `load file --programs xdp:xdp_count` + `attach <id> xdp --iface ...`, check `bpfman load file --help`):
 
-    sudo bpfman load file --path counter.bpf.o --name xdp_count xdp --iface s1-eth1 --priority 50
-    sudo bpfman load file --path counter.bpf.o --name xdp_count xdp --iface s1-eth2 --priority 50
+    sudo bpfman load file --path counter.o --name xdp_count xdp --iface s1-eth1 --priority 50
+    sudo bpfman load file --path counter.o --name xdp_count xdp --iface s1-eth2 --priority 50
 
 Without bpfman (quick test, generic mode):
 
-    sudo ip link set dev s1-eth1 xdpgeneric obj counter.bpf.o sec xdp
+    sudo ip link set dev s1-eth1 xdpgeneric obj counter.o sec xdp
     sudo ip link set dev s1-eth1 xdpgeneric off      # detach
 
 ## Run the web page
