@@ -112,11 +112,14 @@ class Handler(BaseHTTPRequestHandler):
             body, code, ctype = PAGE.encode(), 200, "text/html; charset=utf-8"
         else:
             body, code, ctype = b"not found", 404, "text/plain"
-        self.send_response(code)
-        self.send_header("Content-Type", ctype)
-        self.send_header("Content-Length", str(len(body)))
-        self.end_headers()
-        self.wfile.write(body)
+        try:
+            self.send_response(code)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        except (BrokenPipeError, ConnectionResetError):
+            pass  # browser closed the connection (reload, closed tab): nothing to do
 
     def log_message(self, *a):
         pass
