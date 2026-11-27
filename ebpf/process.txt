@@ -12,3 +12,6 @@ sudo bpfman list                # shows loaded programs + their IDs
 
 // UNLOAD when finished 
 sudo bpfman unload <id>    # remove it when done
+
+// Show eBPF map content
+sudo bpftool map dump name NAME
