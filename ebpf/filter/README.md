@@ -1,6 +1,6 @@
 # XDP MAC filter with web page
 
- `macfilter.c` + `server.py`: packets and bytes per MAC address, block / allow buttons (section at the end)
+ `macfilter.c` + `server_*.py`: packets and bytes per MAC address, block / allow buttons (section at the end)
 
 ## Build
     sudo dnf install clang libbpf-devel bpftool   # Fedora
@@ -12,7 +12,9 @@ The program learns every source MAC into the map `mac_stats` (packets, bytes) an
     make
     sudo bpfman load file --path filter.o --name xdp_macfilter xdp --iface s1-eth1 --priority 50
     sudo bpfman load file --path filter.o --name xdp_macfilter xdp --iface s1-eth2 --priority 50
-    sudo python3 server.py            # http://127.0.0.1:8000
+    sudo python3 server_*.py            # http://127.0.0.1:8000
+
+Select `server_simple.py` for low-performance devices, or `server_modern.py` for more advanced functionality. 
 
 ## Test
 
@@ -26,3 +28,7 @@ Test in Mininet: `h1 ping h2`, block h2's MAC in the browser (`h2 ifconfig` show
 - `mac_stats` is an LRU map: if many (spoofed) MACs appear, the oldest entries are evicted. Blocked MACs are kept in `blocked`.
 - Multicast/broadcast addresses cannot be blocked. POST requests must be JSON, so other web sites cannot trigger a block.
 - Manual check: `sudo bpftool map dump name blocked`
+
+## Modern server GUI
+![Devices tab](img/devices.png)
+![Graphs tab](img/graphs.png)
